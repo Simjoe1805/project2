@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixNow Dispatch</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <section class="flow-shell" id="flow-shell" aria-label="Get started">
+      <div class="flow-stack">
+        <article class="flow-layer active flow-layer-hero" data-step="0" id="welcome-layer">
+          <div class="welcome-brand">
+            <div class="brand-logo" aria-hidden="true">FN</div>
+            <div class="welcome-copy">
+              <p class="eyebrow">FixNow</p>
+              <h1 class="welcome-title">Trusted home services, one tap away.</h1>
+              <div class="service-marquee" aria-label="Available services">
+                <div class="service-marquee-track">
+                  <span>Plumbing</span>
+                  <span>Electrician</span>
+                  <span>Locksmith</span>
+                  <span>HVAC</span>
+                  <span>Appliance</span>
+                  <span>Handyman</span>
+                  <span>Plumbing</span>
+                  <span>Electrician</span>
+                  <span>Locksmith</span>
+                  <span>HVAC</span>
+                  <span>Appliance</span>
+                  <span>Handyman</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="layer-actions welcome-actions">
+            <button id="open-login" class="secondary-button" type="button">Log in</button>
+            <button id="open-guest" class="ghost-button" type="button">Use as guest</button>
+            <button id="open-signup" class="primary-button" type="button">Sign up</button>
+            <button id="open-partner" class="secondary-button" type="button">Become a partner</button>
+          </div>
+        </article>
+
+        <article class="flow-layer" data-step="1" id="login-layer">
+          <div class="flow-kicker">
+            <span class="eyebrow">Step 1 of 3</span>
+            <span class="flow-step-count">Log in</span>
+          </div>
+          <h2>Welcome back</h2>
+          <p class="section-copy flow-copy">Log in to continue to service selection and nearby providers.</p>
+          <form id="login-form" class="signup-form">
+            <label class="field-label" for="login-email">Email</label>
+            <input id="login-email" type="email" placeholder="jordan@example.com" required>
+            <label class="field-label" for="login-password">Password</label>
+            <input id="login-password" type="password" placeholder="Enter your password" required>
+            <div class="layer-actions">
+              <button class="ghost-button" data-flow-back="0" type="button">Back</button>
+              <button class="primary-button" type="submit">Continue</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="flow-layer" data-step="2" id="signup-layer">
+          <div class="flow-kicker">
+            <span class="eyebrow">Step 1 of 3</span>
+            <span class="flow-step-count">Sign up</span>
+          </div>
+          <h2>Create your account</h2>
+          <p class="section-copy flow-copy">Sign up first so booking details, live updates, and secure chat stay tied to your request.</p>
+          <form id="signup-form" class="signup-form">
+            <label class="field-label" for="signup-name">Full name</label>
+            <input id="signup-name" type="text" placeholder="Jordan Lee" required>
+            <label class="field-label" for="signup-email">Email</label>
+            <input id="signup-email" type="email" placeholder="jordan@example.com" required>
+            <label class="field-label" for="signup-password">Password</label>
+            <input id="signup-password" type="password" placeholder="Create a password" required>
+            <div class="layer-actions">
+              <button class="ghost-button" data-flow-back="0" type="button">Back</button>
+              <button class="primary-button" type="submit">Next</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="flow-layer" data-step="3" id="guest-layer">
+          <div class="flow-kicker">
+            <span class="eyebrow">Step 1 of 3</span>
+            <span class="flow-step-count">Guest</span>
+          </div>
+          <h2>Continue as guest</h2>
+          <p class="section-copy flow-copy">Add a few contact details so providers can coordinate arrival updates without creating a full account.</p>
+          <form id="guest-form" class="signup-form">
+            <label class="field-label" for="guest-name">Full name</label>
+            <input id="guest-name" type="text" placeholder="Jordan Lee" required>
+            <label class="field-label" for="guest-phone">Phone number</label>
+            <input id="guest-phone" type="tel" placeholder="(555) 123-4567" required>
+            <label class="field-label" for="guest-email">Email (optional)</label>
+            <input id="guest-email" type="email" placeholder="jordan@example.com">
+            <div class="layer-actions">
+              <button class="ghost-button" data-flow-back="0" type="button">Back</button>
+              <button class="primary-button" type="submit">Continue</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="flow-layer" data-step="4" id="services-layer">
+          <div class="flow-kicker">
+            <span class="eyebrow">Step 2 of 3</span>
+            <span class="flow-step-count">Services</span>
+          </div>
+          <h2>Select a service</h2>
+          <p class="section-copy flow-copy">Choose the category first. This layer narrows nearby professionals before you enter the live map.</p>
+          <div id="flow-service-grid" class="layer-service-grid" aria-label="Available services"></div>
+          <div class="layer-actions">
+            <button id="services-back" class="ghost-button" type="button">Back</button>
+            <button id="services-continue" class="primary-button" type="button">See nearby pros</button>
+          </div>
+        </article>
+
+        <article class="flow-layer" data-step="5" id="location-layer">
+          <div class="flow-kicker">
+            <span class="eyebrow">Step 3 of 3</span>
+            <span class="flow-step-count">Location</span>
+          </div>
+          <h2>Use your current location</h2>
+          <p class="section-copy flow-copy">We use your current location to show the closest providers and place clickable service icons on the map.</p>
+          <div class="location-layer-card">
+            <span class="field-label">Current location</span>
+            <strong id="flow-location-text">Detecting location...</strong>
+            <p id="location-summary" class="muted">Looking for nearby professionals now.</p>
+          </div>
+          <div id="nearby-preview" class="nearby-preview"></div>
+          <div class="layer-actions">
+            <button class="ghost-button" data-flow-back="4" type="button">Back</button>
+            <button id="refresh-location" class="secondary-button" type="button">Refresh location</button>
+            <button id="enter-app" class="primary-button" type="button">Open live map</button>
+          </div>
+        </article>
+
+        <article class="flow-layer partner-layer" data-step="6" id="partner-layer">
+          <div class="flow-kicker">
+            <span class="eyebrow">Partner network</span>
+            <span class="flow-step-count">Tradespeople</span>
+          </div>
+          <h2>Join FixNow as a service partner</h2>
+          <p class="section-copy flow-copy">Apply to take plumbing, HVAC, electrical, locksmith, appliance, and handyman jobs in your coverage area.</p>
+
+          <div class="partner-overview">
+            <article class="partner-note">
+              <strong>Who can apply</strong>
+              <p class="muted">Licensed plumbers, electricians, HVAC technicians, locksmiths, appliance specialists, and handymen.</p>
+            </article>
+            <article class="partner-note">
+              <strong>Why join</strong>
+              <p class="muted">Receive nearby jobs, keep customer communication in-app, and manage work from the same live dispatch map.</p>
+            </article>
+            <article class="partner-note">
+              <strong>What we review</strong>
+              <p class="muted">Trade category, experience, contact details, service area, and licensing or insurance information where applicable.</p>
+            </article>
+          </div>
+
+          <form id="partner-form" class="partner-form">
+            <label class="field-label" for="partner-name">Full name</label>
+            <input id="partner-name" type="text" placeholder="Jordan Lee" required>
+
+            <label class="field-label" for="partner-business">Business name</label>
+            <input id="partner-business" type="text" placeholder="Lee Home Services" required>
+
+            <label class="field-label" for="partner-email">Email</label>
+            <input id="partner-email" type="email" placeholder="jordan@business.com" required>
+
+            <label class="field-label" for="partner-phone">Phone</label>
+            <input id="partner-phone" type="tel" placeholder="(555) 123-4567" required>
+
+            <label class="field-label" for="partner-trade">Primary service</label>
+            <select id="partner-trade" required>
+              <option value="">Select a trade</option>
+              <option value="plumbing">Plumbing</option>
+              <option value="electrician">Electrician</option>
+              <option value="locksmith">Locksmith</option>
+              <option value="hvac">HVAC</option>
+              <option value="appliance">Appliance</option>
+              <option value="handyman">Handyman</option>
+            </select>
+
+            <label class="field-label" for="partner-experience">Years of experience</label>
+            <input id="partner-experience" type="number" min="0" placeholder="8" required>
+
+            <label class="field-label" for="partner-area">Service area</label>
+            <input id="partner-area" type="text" placeholder="Brooklyn, Queens, Manhattan" required>
+
+            <label class="field-label" for="partner-license">License or insurance info</label>
+            <input id="partner-license" type="text" placeholder="License # or insured business details">
+
+            <label class="field-label" for="partner-notes">Tell us about your work</label>
+            <textarea id="partner-notes" rows="4" placeholder="Emergency repairs, same-day service, residential installs, maintenance, and more."></textarea>
+
+            <div class="layer-actions">
+              <button class="ghost-button" data-flow-back="0" type="button">Back</button>
+              <button class="primary-button" type="submit">Submit application</button>
+            </div>
+          </form>
+
+          <div id="partner-success" class="partner-success hidden-panel">
+            <strong>Application received</strong>
+            <p class="muted">We will review your trade details and contact you about next steps for joining the FixNow partner network.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <main class="map-stage">
+      <div class="top-chrome">
+        <div class="brand-lockup">
+          <p class="eyebrow">Home service dispatch</p>
+          <h1>FixNow gets trusted help to your door fast.</h1>
+        </div>
+        <button class="location-pill" id="location-pill" type="button">Detecting location...</button>
+      </div>
+
+      <section class="search-card panel">
+        <div>
+          <p class="eyebrow">Instant matching</p>
+          <h2>What do you need help with?</h2>
+        </div>
+        <div class="search-row">
+          <input id="search-input" type="text" placeholder="Leaking pipe under the sink">
+          <button id="match-button" class="primary-button" type="button">Find help now</button>
+        </div>
+        <div class="search-meta">
+          <span id="match-summary">3 licensed plumbers are nearby and ready.</span>
+          <span class="pill subtle-pill">No browsing required</span>
+        </div>
+      </section>
+
+      <section class="map-canvas panel">
+        <div class="map-glow"></div>
+        <div class="route-line"></div>
+        <div class="user-location-marker" id="user-location-marker" aria-label="Your current location">
+          <span>You</span>
+        </div>
+        <div class="van-marker" id="van-marker" aria-hidden="true">
+          <span>FixNow Van</span>
+        </div>
+        <div id="map-pins" class="map-pins" aria-label="Nearby providers"></div>
+
+        <div class="map-insight">
+          <p class="eyebrow">Live dispatch</p>
+          <div class="insight-row">
+            <div>
+              <p class="metric-label">Current ETA</p>
+              <p class="metric-value" id="hero-eta">10 mins</p>
+            </div>
+            <div>
+              <p class="metric-label">Selected pro</p>
+              <p class="metric-value small" id="hero-pro">Marcus Reed</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-stats">
+          <div>
+            <p class="metric-label">Verified nearby</p>
+            <p class="metric-value">18</p>
+          </div>
+          <div>
+            <p class="metric-label">Avg. response</p>
+            <p class="metric-value">11 min</p>
+          </div>
+          <div>
+            <p class="metric-label">Completion rate</p>
+            <p class="metric-value">98%</p>
+          </div>
+        </div>
+
+        <aside class="map-detail-card" id="map-detail-card" aria-live="polite">
+          <p class="eyebrow">Map selection</p>
+          <h3 id="map-detail-name">Marcus Reed</h3>
+          <p id="map-detail-service" class="muted">Plumber - 8 years experience</p>
+          <p id="map-detail-bio" class="section-copy">Licensed plumber focused on emergency leaks, clogged drains, and clean first-visit repairs.</p>
+          <div class="map-detail-meta">
+            <div>
+              <span class="field-label inline-label">Rating</span>
+              <strong id="map-detail-rating">4.9</strong>
+            </div>
+            <div>
+              <span class="field-label inline-label">Price</span>
+              <strong id="map-detail-price">$120/hr</strong>
+            </div>
+            <div>
+              <span class="field-label inline-label">Experience</span>
+              <strong id="map-detail-experience">8 years</strong>
+            </div>
+          </div>
+          <button id="map-detail-book" class="primary-button wide-button" type="button">Book and continue</button>
+        </aside>
+      </section>
+
+      <div class="emergency-dock" aria-label="Emergency shortcuts">
+        <button class="emergency-chip" data-emergency="water leak" type="button">Water leak</button>
+        <button class="emergency-chip" data-emergency="power outage" type="button">Power outage</button>
+        <button class="emergency-chip" data-emergency="locked out" type="button">Locked out</button>
+      </div>
+
+      <button class="panic-fab" id="panic-fab" type="button">Emergency</button>
+    </main>
+
+    <section class="bottom-sheet">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="sheet-header">
+        <div class="sheet-heading-group">
+          <p id="sheet-page-eyebrow" class="eyebrow">Booking details</p>
+          <h2 id="sheet-page-title">Choose your pro, then continue to payment.</h2>
+          <p id="sheet-page-copy" class="section-copy">Booking is its own page now. After you book, checkout opens immediately, then live tracking unlocks after payment.</p>
+        </div>
+        <div class="sheet-header-actions">
+          <button id="sheet-back-button" class="ghost-button" type="button" hidden>Previous tab</button>
+          <div class="sheet-badges">
+            <span class="pill">Background checked</span>
+            <span class="pill">Licensed & insured</span>
+            <span class="pill">In-app chat only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-tabs" id="sheet-tabs" role="tablist" aria-label="Booking tabs">
+        <button class="sheet-tab active" data-sheet-tab="booking" aria-selected="true" type="button">Booking</button>
+        <button class="sheet-tab" data-sheet-tab="payment" aria-selected="false" type="button">Payment</button>
+        <button class="sheet-tab" data-sheet-tab="tracking" aria-selected="false" type="button">Live tracker</button>
+      </div>
+
+      <div class="sheet-panel active" data-sheet-panel="booking">
+        <div class="sheet-grid">
+          <section class="card service-card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Service selection</p>
+                <h3>Choose the service you need.</h3>
+              </div>
+              <p class="section-copy">Quick estimate updates as you describe the issue.</p>
+            </div>
+
+            <div id="category-grid" class="category-grid" aria-label="Service categories"></div>
+
+            <label class="field-label" for="issue-input">Describe the problem</label>
+            <textarea id="issue-input" rows="4" placeholder="The kitchen sink is backing up and water is dripping into the cabinet."></textarea>
+
+            <div class="field-row">
+              <label class="upload-tile" for="photo-input">
+                <input id="photo-input" type="file" accept="image/*">
+                <span>Upload a photo</span>
+                <strong id="photo-name">No file selected</strong>
+              </label>
+
+              <div class="schedule-tile">
+                <span class="field-label inline-label">Urgency</span>
+                <div class="toggle-row" id="urgency-toggle">
+                  <button class="toggle active" data-mode="asap" type="button">ASAP</button>
+                  <button class="toggle" data-mode="schedule" type="button">Schedule later</button>
+                </div>
+                <input id="schedule-input" type="datetime-local" class="hidden-input">
+              </div>
+            </div>
+
+            <div class="estimate-block">
+              <div>
+                <p class="field-label inline-label">Quick estimate</p>
+                <p id="estimate-value" class="estimate-value">$129 - $179</p>
+              </div>
+              <div>
+                <p class="field-label inline-label">AI suggestion</p>
+                <p id="ai-suggestion" class="section-copy">Share a photo or a few more details for a sharper diagnosis.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="card profiles-card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Professional profiles</p>
+                <h3>Verified pros ready nearby.</h3>
+              </div>
+              <p id="profiles-summary" class="section-copy">Showing the fastest options for your request.</p>
+            </div>
+            <div id="profiles-list" class="profiles-list"></div>
+          </section>
+
+          <section class="card trust-card booking-trust-card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Trust & safety</p>
+                <h3>Built-in proof before, during, and after the job.</h3>
+              </div>
+            </div>
+
+            <div class="trust-grid">
+              <article class="trust-tile">
+                <strong>Verified badges</strong>
+                <p>License, insurance, and background check are visible on every profile.</p>
+              </article>
+              <article class="trust-tile">
+                <strong>Real reviews</strong>
+                <p>Every rating shown here comes from completed jobs in the app.</p>
+              </article>
+              <article class="trust-tile">
+                <strong>Secure messaging</strong>
+                <p>All coordination stays in-app. No personal phone numbers are exposed.</p>
+              </article>
+            </div>
+
+            <div class="before-after">
+              <div class="photo-card before-photo">
+                <span>Before</span>
+                <strong>Leak under kitchen sink</strong>
+              </div>
+              <div class="photo-card after-photo">
+                <span>After</span>
+                <strong>New trap + sealed joint</strong>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="sheet-panel" data-sheet-panel="payment">
+        <section class="card payment-card payment-card-tab">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Payment</p>
+              <h3>Confirm payment to dispatch your pro.</h3>
+            </div>
+          </div>
+          <p class="section-copy payment-intro">Finish checkout here. As soon as payment clears, the live ETA and route tracker open automatically.</p>
+
+          <div class="payment-methods" id="payment-methods">
+            <button class="method active" data-payment="card" type="button">Card</button>
+            <button class="method" data-payment="applepay" type="button">Apple Pay</button>
+            <button class="method" data-payment="wallet" type="button">Wallet</button>
+          </div>
+
+          <div class="cost-breakdown">
+            <div><span>Service call</span><strong id="service-cost">$95</strong></div>
+            <div><span>Labor / fixed price</span><strong id="labor-cost">$64</strong></div>
+            <div><span>Platform fee</span><strong id="platform-cost">$18</strong></div>
+            <div><span>Tip</span><strong id="tip-cost">$0</strong></div>
+          </div>
+
+          <div class="tip-row" id="tip-row">
+            <button class="tip active" data-tip="0" type="button">No tip</button>
+            <button class="tip" data-tip="10" type="button">$10</button>
+            <button class="tip" data-tip="20" type="button">$20</button>
+            <button class="tip" data-tip="35" type="button">$35</button>
+          </div>
+
+          <button id="pay-button" class="primary-button wide-button" type="button">Pay $177</button>
+        </section>
+      </div>
+
+      <div class="sheet-panel" data-sheet-panel="tracking">
+        <div class="tracking-stack">
+          <section class="card tracking-card tracking-card-tab">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Live tracker</p>
+                <h3 id="tracking-title">Marcus Reed is on the way.</h3>
+              </div>
+              <span id="status-pill" class="status-pill">On the way</span>
+            </div>
+
+            <div class="tracking-hero">
+              <div class="tracking-hero-block">
+                <span class="field-label inline-label">Live route</span>
+                <strong id="tracker-location">Marcus Reed to Chelsea, New York</strong>
+                <p id="tracker-distance" class="muted">Your pro is 1.4 mi away and heading to you now.</p>
+              </div>
+              <div class="tracking-hero-block">
+                <span class="field-label inline-label">ETA tracker</span>
+                <strong id="tracker-eta">10 mins</strong>
+                <p class="muted">The map above keeps the route between you and your pro in view.</p>
+              </div>
+            </div>
+
+            <div class="tracker-progress" aria-hidden="true">
+              <div id="tracker-progress-bar" class="tracker-progress-bar"></div>
+            </div>
+
+            <div class="tracker-metrics">
+              <div class="metric-tile highlight">
+                <span class="metric-label">ETA countdown</span>
+                <strong id="eta-value">10 mins</strong>
+              </div>
+              <div class="metric-tile">
+                <span class="metric-label">Vehicle</span>
+                <strong id="vehicle-value">White Transit Van</strong>
+              </div>
+              <div class="metric-tile">
+                <span class="metric-label">Secure code</span>
+                <strong id="code-value">FN-2841</strong>
+              </div>
+            </div>
+
+            <div class="status-list" id="status-list" aria-label="Booking status updates"></div>
+
+            <div class="action-row">
+              <button id="call-button" class="secondary-button" type="button">Call</button>
+              <button id="message-button" class="secondary-button" type="button">Message</button>
+              <button id="advance-button" class="ghost-button" type="button">Advance demo</button>
+            </div>
+
+            <div class="chat-panel">
+              <div class="chat-heading">
+                <p class="field-label inline-label">In-app chat</p>
+                <span class="pill subtle-pill">Personal numbers stay private</span>
+              </div>
+              <div id="chat-thread" class="chat-thread"></div>
+              <div class="chat-compose">
+                <input id="chat-input" type="text" placeholder="Message your technician">
+                <button id="chat-send" class="primary-button" type="button">Send</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="card hub-card tracking-hub-card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Saved, history, notifications</p>
+                <h3>Keep repeat jobs and updates close.</h3>
+              </div>
+            </div>
+
+            <div class="hub-grid">
+              <div>
+                <p class="field-label inline-label">Favorite technicians</p>
+                <div id="favorites-list" class="stack-list"></div>
+              </div>
+              <div>
+                <p class="field-label inline-label">Job history</p>
+                <div id="history-list" class="stack-list"></div>
+              </div>
+              <div>
+                <p class="field-label inline-label">Notifications</p>
+                <div id="notifications-list" class="stack-list"></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="review-panel" class="card review-card hidden-panel">
+            <div class="section-heading compact-heading">
+              <div>
+                <p class="eyebrow">Rate & review</p>
+                <h3>How was the visit?</h3>
+              </div>
+            </div>
+            <div class="star-row" id="star-row">
+              <button class="star active" data-rating="1" type="button">&#9733;</button>
+              <button class="star active" data-rating="2" type="button">&#9733;</button>
+              <button class="star active" data-rating="3" type="button">&#9733;</button>
+              <button class="star active" data-rating="4" type="button">&#9733;</button>
+              <button class="star active" data-rating="5" type="button">&#9733;</button>
+            </div>
+            <textarea id="review-input" rows="3" placeholder="Professional, quick, and clean."></textarea>
+            <button id="submit-review" class="secondary-button wide-button" type="button">Submit review</button>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
